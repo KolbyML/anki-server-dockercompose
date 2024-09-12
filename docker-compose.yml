@@ -5,10 +5,12 @@ services:
     hostname: anki-sync-server
     image: anki-sync-server
     environment:
-      - SYNC_BASE: ${SYNC_BASE:-~/.syncserver}
-      - SYNC_PORT: ${SYNC_PORT:-8080}
-      - SYNC_USER1: ${SYNC_USER1?anki-sync-server Requires a username and password in "SYNC_USER1=user:pass" format}
+      - MAX_SYNC_PAYLOAD_MEGS=50000
+      - SYNC_PORT=${SYNC_PORT:-8080}
+      - SYNC_USER1=${SYNC_USER1?anki-sync-server Requires a username and password in "SYNC_USER1=user:pass" format}
     network_mode: "host"
     volumes: 
-      - ${SYNC_BASE}:${SYNC_BASE}
+      - ${HOME}/.syncserver:${HOME}/.syncserver
+    env_file:
+      - .env
     restart: always
