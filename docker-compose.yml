@@ -3,7 +3,7 @@ services:
   anki-sync-server:
     container_name: anki-sync-server
     hostname: anki-sync-server
-    image: anki-sync-server
+    image: ghcr.io/kolbyml/anki-syncserver:latest
     environment:
       - MAX_SYNC_PAYLOAD_MEGS=50000
       - SYNC_PORT=${SYNC_PORT:-8080}
